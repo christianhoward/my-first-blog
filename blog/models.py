@@ -2,6 +2,7 @@ from django.db import models
 
 from django.utils import timezone
 
+#model for blog posts
 class Post(models.Model):
     author = models.ForeignKey('auth.User')
     title = models.CharField(max_length=200)
@@ -19,6 +20,7 @@ class Post(models.Model):
     def approved_comments(self):
         return self.comments.filter(approved_comment=True)
 
+#model for comments
 class Comment(models.Model):
     post = models.ForeignKey('blog.Post', related_name='comments')
     author = models.CharField(max_length=200)
